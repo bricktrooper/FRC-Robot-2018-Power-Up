@@ -1,8 +1,6 @@
-	package org.usfirst.frc.team4015.robot.commands;
-
-
+package org.usfirst.frc.team4015.robot.commands;
+	
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4015.robot.Robot;
 import org.usfirst.frc.team4015.robot.OI;
@@ -27,34 +25,8 @@ public class MoveArm extends Command
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
-	protected void execute() {
-		// MOVE ARM UP //
-		System.out.println(OI.rightStick.getRawButton(6));
-
-		/*
-		 * if (OI.rightStick.getRawButton(6)/*&&!(Robot.arm.getTopSwitch())) /*||
-		 * OI.gamepad.getRawButton(11) { System.out.println("eiupiew"); Robot.arm.up();
-		 * }
-		 */
-		
-		//System.out.println(Robot.arm.getTopSwitch());
-		//System.out.println(Robot.arm.getBottomSwitch());
-		
-		/*
-		 * if(OI.rightStick.getRawButton(6))
-		 * {
-		 * Robot.arm.up();
-		 * } 
-		 * else if (OI.rightStick.getRawButton(4))
-		 * { 
-		 * Robot.arm.down();
-		 * } 
-		 * else 
-		 * {
-		 *  Robot.arm.stop(); 
-		 * }
-		 */
-		
+	protected void execute()
+	{	
 		if (OI.gamepad.getY(Hand.kLeft) > 0.5 || OI.rightStick.getRawButton(6))
 		{
 			Robot.arm.down();

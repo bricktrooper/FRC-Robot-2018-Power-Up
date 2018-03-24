@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Winch extends Subsystem
 {
-	PWMTalonSRX winchMotors;
+	public PWMTalonSRX winchMotors;
 	
 	public Winch()
 	{

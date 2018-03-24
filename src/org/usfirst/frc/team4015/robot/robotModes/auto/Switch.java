@@ -1,8 +1,11 @@
 package org.usfirst.frc.team4015.robot.robotModes.auto;
 
+import org.usfirst.frc.team4015.robot.commands.Initialize;
 import org.usfirst.frc.team4015.robot.commands.auto.DriveToBaseLine;
-import org.usfirst.frc.team4015.robot.commands.auto.DropBox;
-import org.usfirst.frc.team4015.robot.commands.auto.TurnToSwitch;
+import org.usfirst.frc.team4015.robot.commands.auto.DropCube;
+import org.usfirst.frc.team4015.robot.commands.auto.TurnToTarget;
+import org.usfirst.frc.team4015.robot.commands.auto.Recover;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /* ===================================================
@@ -14,34 +17,25 @@ public class Switch extends CommandGroup
 	// CONSTRUCTOR //
 	
 	public  Switch(int position, char side)
-	{
+	{	
+		addSequential(new Initialize());
+		addSequential(new DriveToBaseLine());  // GET TO BASE LINE
 		
-		addSequential(new DriveToBaseLine(-1)); //indicate switch
-		if(side=='L'){
-			if(position==1){
-			
-				addSequential(new TurnToSwitch(-1,1));
-			}
-			/*else if(position==3){
-				Robot.drivetrain.drive(0, 0.75, 0);
-				Timer.delay(3);
-				Robot.drivetrain.stop();
-				Robot.drivetrain.drive(1, 0, 0);
-				Timer.delay(0); //TODO: Find strafe time
-				Robot.drivetrain.stop();
-				turn=-1;
-			}*/
+		if (side == 'L' && position == 1)
+		{
+			addSequential(new TurnToTarget(-1, 'R'));
 		}
-		else if(side=='R'){
-			if(position==3){
-	
-				addSequential(new TurnToSwitch(-1,-1));
-			}
+		else if (side == 'R' && position == 2)
+		{
+			addSequential(new TurnToTarget(-1, 'N'));
+		}	
+		else if (side == 'R' && position == 3)
+		{
+			addSequential(new TurnToTarget(-1, 'L'));
 		}
-			
 		
-		
-		addSequential(new DropBox(-1));
+		addSequential(new DropCube(-1));  // DROP CUBE IN SWITCH
+		addSequential(new Recover());
     }
 	
 }

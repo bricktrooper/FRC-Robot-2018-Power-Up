@@ -15,15 +15,12 @@ public class Drive extends Command
 	public Drive()
 	{
 		requires(Robot.drivetrain);
-		
-		
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize()
 	{
-		
 		
 	}
 

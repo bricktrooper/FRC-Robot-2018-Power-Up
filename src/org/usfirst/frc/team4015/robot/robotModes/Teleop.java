@@ -27,7 +27,7 @@ public class Teleop extends CommandGroup
     	addParallel(new MoveArm());
     	addParallel(new MoveWrist());
     	addParallel(new Climb());
-    	addParallel(new ToggleCompressor());
+    	//addParallel(new ToggleCompressor());
     }
 	
 }

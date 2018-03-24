@@ -7,8 +7,7 @@ import org.usfirst.frc.team4015.robot.Robot;
 
 /* ===================================================
  * This command enables the user to manually turn the 
- * compressor on and off by pressing button 9 on the
- * Attack 3 stick.  For automatic compressor control,
+ * compressor on and off.  For automatic compressor control,
  * do not use this command in the Teleop CommandGroup,
  * or leave the compressor on by pressing button 9 if it
  * is currently off.
@@ -21,8 +20,7 @@ public class ToggleCompressor extends Command
 {
 	public ToggleCompressor()
 	{
-		// Use requires() here to declare subsystem dependencies
-		// requires(Robot.exampleSubsystem);
+		requires(Robot.pneumatics);
 	}
 
 	// Called just before this Command runs the first time

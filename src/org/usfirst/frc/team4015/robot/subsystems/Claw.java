@@ -20,6 +20,21 @@ public class Claw extends Subsystem
 	{
 		clawPiston = new Piston(RobotMap.clawPistonLeftChannel, RobotMap.clawPistonRightChannel);
 	}
+	
+	public void open()
+	{
+		clawPiston.extend();
+	}
+	
+	public void close()
+	{
+		clawPiston.retract();
+	}
+	
+	public void toggle()
+	{
+		clawPiston.toggle();
+	}
 
 	public void initDefaultCommand()
 	{

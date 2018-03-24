@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 
-import org.usfirst.frc.team4015.robot.Robot;
 import org.usfirst.frc.team4015.robot.RobotMap;
 
 /* ===================================================
@@ -14,9 +13,9 @@ import org.usfirst.frc.team4015.robot.RobotMap;
 
 public class Wrist extends Subsystem
 {	
-	PWMTalonSRX wristMotor;
-	DigitalInput topSwitch;
-	DigitalInput bottomSwitch;
+	public PWMTalonSRX wristMotor;
+	private DigitalInput topSwitch;
+	private DigitalInput bottomSwitch;
 	
 	public Wrist()
 	{
@@ -64,6 +63,30 @@ public class Wrist extends Subsystem
 	public boolean getBottomSwitch()
 	{
 		return bottomSwitch.get();
+	}
+	
+		// RESET TO TOP //
+	
+	public void resetToTop()
+	{
+		while (!getTopSwitch())
+		{
+			up();
+		}
+		
+		stop();
+	}
+	
+	// RESET TO BOTTOM //
+	
+	public void resetToBottom()
+	{
+		while (!getBottomSwitch())
+		{
+			down();
+		}
+		
+		stop();
 	}
 
 	public void initDefaultCommand()

@@ -1,46 +1,52 @@
 package org.usfirst.frc.team4015.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team4015.robot.OI;
 import org.usfirst.frc.team4015.robot.Robot;
 
 /* ===================================================
- * This command allows for control of the claw. 
+ * Robot startup routine
  * =================================================*/
 
-public class MoveClaw extends Command
+public class Initialize extends Command
 {
-	public MoveClaw()
+	private boolean finish;
+	
+	public Initialize()
 	{
+		requires(Robot.drivetrain);
+		requires(Robot.arm);
 		requires(Robot.claw);
+		requires(Robot.wrist);
+		requires(Robot.winch);
+		
+		finish = false;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize()
 	{
-		// Default starting position
-		Robot.claw.clawPiston.retract();
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute()
 	{
-		if (OI.rightStick.getRawButton(1) || OI.gamepad.getBumper(Hand.kRight))
-		{
-			Robot.claw.clawPiston.toggle();
-			Timer.delay(1);
-		}
+		Robot.claw.close();
+		Robot.drivetrain.stop();
+		Robot.arm.stop();
+		Robot.wrist.resetToTop();
+		Robot.winch.stop();
+		
+		finish = true;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished()
 	{
-		return false;
+		return finish;
 	}
 
 	// Called once after isFinished returns true

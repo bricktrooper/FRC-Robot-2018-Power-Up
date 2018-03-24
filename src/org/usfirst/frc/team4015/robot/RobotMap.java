@@ -35,9 +35,4 @@ public class RobotMap
 	// WRIST //
 	
 	 public static final int wristMotor = 4;
-	 
-	 // INTAKE //
-	
-	// public static final int intakeMotors = ;
-	
 }

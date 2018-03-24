@@ -1,46 +1,53 @@
-package org.usfirst.frc.team4015.robot.commands;
+package org.usfirst.frc.team4015.robot.commands.auto;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team4015.robot.OI;
+import edu.wpi.first.wpilibj.Timer;
+
 import org.usfirst.frc.team4015.robot.Robot;
 
 /* ===================================================
- * This command allows for control of the claw. 
+ * Recover after completing auto
  * =================================================*/
 
-public class MoveClaw extends Command
+public class Recover extends Command
 {
-	public MoveClaw()
+	private boolean finish;
+	
+	public Recover()
 	{
-		requires(Robot.claw);
+		// Use requires() here to declare subsystem dependencies
+		//requires(Robot.exampleSubsystem);
+		
+		finish = false;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize()
 	{
-		// Default starting position
-		Robot.claw.clawPiston.retract();
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute()
 	{
-		if (OI.rightStick.getRawButton(1) || OI.gamepad.getBumper(Hand.kRight))
-		{
-			Robot.claw.clawPiston.toggle();
-			Timer.delay(1);
-		}
+		// MOVE WRIST UP TO SAFE POSITION
+		Robot.wrist.resetToTop();
+		
+		// BACK UP
+		Robot.drivetrain.drive(0, -1, 0);
+		Timer.delay(1);
+		Robot.drivetrain.stop();
+		
+		finish = true;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished()
 	{
-		return false;
+		return finish;
 	}
 
 	// Called once after isFinished returns true

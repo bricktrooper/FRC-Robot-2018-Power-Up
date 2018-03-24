@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4015.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 
 import org.usfirst.frc.team4015.robot.RobotMap;
